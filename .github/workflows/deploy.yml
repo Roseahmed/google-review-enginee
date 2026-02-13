@@ -49,17 +49,31 @@ jobs:
         run: bun run fetch:reviews
 
       # 6️⃣ Commit updated JSON (only if changed)
+      # - name: Commit updated data
+      #   run: |
+      #     git config user.name "github-actions"
+      #     git config user.email "actions@github.com"
+
+      #     if [ -n "$(git status --porcelain)" ]; then
+      #       git add data/*.json
+      #       git commit -m "Auto update reviews"
+      #       git push
+      #     else
+      #       echo "No changes detected"
+      #     fi
+
+      # 6️⃣ Commit updated JSON (only if changed)
       - name: Commit updated data
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
 
-          if [ -n "$(git status --porcelain)" ]; then
-            git add data/*.json
-            git commit -m "Auto update reviews"
-            git push
+          if git diff --quiet data/; then
+           echo "No review changes"
           else
-            echo "No changes detected"
+           git add .
+           git commit -m "Auto update reviews"
+           git push
           fi
 
       # 7️⃣ Configure GitHub Pages
