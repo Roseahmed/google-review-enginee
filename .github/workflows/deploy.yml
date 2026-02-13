@@ -1,8 +1,11 @@
 name: Update & Deploy Reviews
 
 on:
+  push:
+    branches:
+      - main # Run on every push to main
   schedule:
-    - cron: "0 2 * * *" # Runs daily at 2 AM UTC
+    - cron: "0 2 * * *" # Daily at 2 AM UTC
   workflow_dispatch:
 
 permissions:
@@ -15,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Checkout repo
+      # 1️⃣ Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -27,8 +30,8 @@ jobs:
       - name: Install dependencies
         run: bun install
 
-      # 4️⃣ Debug Secret (Safe)
-      - name: Debug GOOGLE_API_KEY
+      # 4️⃣ Validate Secret (No .env needed)
+      - name: Validate GOOGLE_API_KEY
         env:
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
         run: |
@@ -36,35 +39,39 @@ jobs:
             echo "❌ GOOGLE_API_KEY is NOT set"
             exit 1
           else
-            echo "✅ GOOGLE_API_KEY is set"
-            echo "Key length: ${#GOOGLE_API_KEY}"
+            echo "✅ GOOGLE_API_KEY detected"
           fi
 
-      # 5️⃣ Run fetch script
+      # 5️⃣ Run fetch script (using GitHub secret)
       - name: Fetch latest reviews
         env:
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
         run: bun run fetch:reviews
 
-      # 6️⃣ Commit updated JSON
+      # 6️⃣ Commit updated JSON (only if changed)
       - name: Commit updated data
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git add data/*.json
-          git commit -m "Auto update reviews" || echo "No changes to commit"
-          git push
 
-      # 7️⃣ Setup GitHub Pages
+          if [ -n "$(git status --porcelain)" ]; then
+            git add data/*.json
+            git commit -m "Auto update reviews"
+            git push
+          else
+            echo "No changes detected"
+          fi
+
+      # 7️⃣ Configure GitHub Pages
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v4
 
-      # 8️⃣ Upload artifact
+      # 8️⃣ Upload artifact (deploy only data folder)
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./data
 
-      # 9️⃣ Deploy
+      # 9️⃣ Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
