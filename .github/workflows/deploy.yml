@@ -1,0 +1,49 @@
+name: Update & Deploy Reviews
+
+on:
+    schedule:
+        - cron: "0 2 * * *" # daily
+    workflow_dispatch:
+
+permissions:
+    contents: write
+    pages: write
+    id-token: write
+
+jobs:
+    update-and-deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout repo
+              uses: actions/checkout@v4
+
+            - name: Setup Bun
+              uses: oven-sh/setup-bun@v1
+
+            - name: Install deps
+              run: bun install
+
+            - name: Run fetch script
+              env:
+                  GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+              run: bun run fetch:reviews
+
+            - name: Commit updated JSON
+              run: |
+                  git config user.name "github-actions"
+                  git config user.email "actions@github.com"
+                  git add data/*.json
+                  git commit -m "Auto update reviews" || echo "No changes"
+                  git push
+
+            - name: Setup GitHub Pages
+              uses: actions/configure-pages@v4
+
+            - name: Upload Pages artifact
+              uses: actions/upload-pages-artifact@v3
+              with:
+                  path: ./data
+
+            - name: Deploy to GitHub Pages
+              uses: actions/deploy-pages@v4

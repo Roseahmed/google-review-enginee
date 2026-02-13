@@ -1,0 +1,95 @@
+{
+  "name": "Makana Tower",
+  "rating": 3.9,
+  "totalRatings": 207,
+  "reviews": [
+    {
+      "author_name": "Lalita Dutta",
+      "author_url": "https://www.google.com/maps/contrib/109207181056380824467/reviews",
+      "language": "en",
+      "original_language": "en",
+      "profile_photo_url": "https://lh3.googleusercontent.com/a/ACg8ocIk9iVZyOioo_e4KPnQBy1ajb0D3WE7Sqva11RG1G2KyUU8qg=s128-c0x00000000-cc-rp-mo-ba4",
+      "rating": 4,
+      "relative_time_description": "4 years ago",
+      "text": "Ground floor of the building has different businesses like restaurants, flf shop, mobile stores, etc. rest of the floors are used for residential purpose on rent with best possible facilities including lift. Position of the building is accessible to any other places  easily and to fulfill any requirements that you need in daily life.",
+      "time": 1637746329,
+      "translated": false
+    },
+    {
+      "author_name": "Kishore Kichu",
+      "author_url": "https://www.google.com/maps/contrib/114043488089324864823/reviews",
+      "language": "en",
+      "original_language": "en",
+      "profile_photo_url": "https://lh3.googleusercontent.com/a-/ALV-UjWKtOIV6IIL-_lDkmUrcQT0qICRrpZGwPNWRZTSJKdYvUM4sAc=s128-c0x00000000-cc-rp-mo",
+      "rating": 4,
+      "relative_time_description": "7 years ago",
+      "text": "A really cool place to live and tenants are busy always. Do have a good balcony and no restriction to do party but gently! There are few restaurants and beverages are surrounded by so that easy to get things. 50% of bachelors and others are families",
+      "time": 1528822917,
+      "translated": false
+    },
+    {
+      "author_name": "Sony Joseph",
+      "author_url": "https://www.google.com/maps/contrib/106856648928312170118/reviews",
+      "language": "en",
+      "original_language": "en",
+      "profile_photo_url": "https://lh3.googleusercontent.com/a-/ALV-UjUbMJ_zx_R4neUFwZlIpnFeOc5HTplqFBj2tnM1KEikhNktcgRN-w=s128-c0x00000000-cc-rp-mo-ba6",
+      "rating": 4,
+      "relative_time_description": "7 years ago",
+      "text": "A good apartment in Madiwala. Easily accessible by road . Shopping options nearby. The rooms are good in size and hot water is available throughout. The rent depends on the landlords. All in all, it's a good place to stay. You can also find restaurants nearby.",
+      "time": 1522995837,
+      "translated": false
+    },
+    {
+      "author_name": "Gouri Vinod",
+      "author_url": "https://www.google.com/maps/contrib/109409973471023791267/reviews",
+      "language": "en",
+      "original_language": "en",
+      "profile_photo_url": "https://lh3.googleusercontent.com/a-/ALV-UjXYu6033c7yuWAbLY7-EUwhsWYE5pjwAmLWYWiEaJTn8vXf2gWYRA=s128-c0x00000000-cc-rp-mo",
+      "rating": 1,
+      "relative_time_description": "2 years ago",
+      "text": "There's a whole bucket of water dripping from the closed windows every single time it rains. This is still the situation after the owner \"repaired\" the windows a couple of times.\nIt's been 3 months since I've been staying here and this problem has persisted from the very first week. Dampness in the walls makes the paint peel off and fall on the beds, making it impossible to live without paint chunks constantly falling on your face.\nOwner asked us to shift to a 1bhk when we pay rent for a 2bhk to fix the issue or shift to another building by ourselves. Not an issue we could have figured out before shifting, if we knew we would have never shifted here.\n\nBesides all these issues, there is very erratic water supply with no water for majority of the day. We've been given excuses of a tenant from the bottom floor \"forgetting\" to close the tap hence water runs out. There's been lack of a basic necessity such as water for a whole month now. Truly unlivable conditions.",
+      "time": 1695042886,
+      "translated": false
+    },
+    {
+      "author_name": "Aman Jee",
+      "author_url": "https://www.google.com/maps/contrib/110643511435705909557/reviews",
+      "language": "en",
+      "original_language": "en",
+      "profile_photo_url": "https://lh3.googleusercontent.com/a-/ALV-UjXkjnRs7YMP7jOLw34ZjFAxFsmcGxvwGNjERVOIijQTRGtqF3aC0g=s128-c0x00000000-cc-rp-mo",
+      "rating": 1,
+      "relative_time_description": "2 years ago",
+      "text": "Water problem. On every alternate days, there is a scarcity of water for whole day and night. Manager and Owner doesn't care even after calling and complaining multiple times!",
+      "time": 1693164292,
+      "translated": false
+    }
+  ],
+  "schema": {
+    "@context": "https://schema.org",
+    "@type": "ApartmentComplex",
+    "@id": "https://makanatower.com",
+    "name": "Makana Tower",
+    "url": "https://makanatower.com",
+    "telephone": "+91-9876543210",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Tavarekere, 2nd Main Road",
+      "addressLocality": "Bengaluru",
+      "addressRegion": "Karnataka",
+      "postalCode": "560029",
+      "addressCountry": "IN"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 12.9255204,
+      "longitude": 77.6090818
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 3.9,
+      "reviewCount": 207
+    }
+  },
+  "lastUpdated": "2026-02-13T09:07:05.889Z"
+}

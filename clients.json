@@ -1,0 +1,22 @@
+[
+  {
+    "slug": "makana-tower",
+    "placeId": "ChIJ3-yUIFUUrjsR9z5Fa8iZ3i8",
+    "type": "ApartmentComplex",
+    "name": "Makana Tower",
+    "url": "https://makanatower.com",
+    "phone": "+91-9876543210",
+    "priceRange": "$$",
+    "address": {
+      "street": "Tavarekere, 2nd Main Road, BTM 1st Stage",
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "postalCode": "560029",
+      "country": "IN"
+    },
+    "geo": {
+      "lat": 12.9255204,
+      "lng": 77.6090818
+    }
+  }
+]
