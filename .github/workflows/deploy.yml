@@ -1,49 +1,70 @@
 name: Update & Deploy Reviews
 
 on:
-    schedule:
-        - cron: "0 2 * * *" # daily
-    workflow_dispatch:
+  schedule:
+    - cron: "0 2 * * *" # Runs daily at 2 AM UTC
+  workflow_dispatch:
 
 permissions:
-    contents: write
-    pages: write
-    id-token: write
+  contents: write
+  pages: write
+  id-token: write
 
 jobs:
-    update-and-deploy:
-        runs-on: ubuntu-latest
+  update-and-deploy:
+    runs-on: ubuntu-latest
 
-        steps:
-            - name: Checkout repo
-              uses: actions/checkout@v4
+    steps:
+      # 1️⃣ Checkout repo
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-            - name: Setup Bun
-              uses: oven-sh/setup-bun@v1
+      # 2️⃣ Setup Bun
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
 
-            - name: Install deps
-              run: bun install
+      # 3️⃣ Install dependencies
+      - name: Install dependencies
+        run: bun install
 
-            - name: Run fetch script
-              env:
-                  GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
-              run: bun run fetch:reviews
+      # 4️⃣ Debug Secret (Safe)
+      - name: Debug GOOGLE_API_KEY
+        env:
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+        run: |
+          if [ -z "$GOOGLE_API_KEY" ]; then
+            echo "❌ GOOGLE_API_KEY is NOT set"
+            exit 1
+          else
+            echo "✅ GOOGLE_API_KEY is set"
+            echo "Key length: ${#GOOGLE_API_KEY}"
+          fi
 
-            - name: Commit updated JSON
-              run: |
-                  git config user.name "github-actions"
-                  git config user.email "actions@github.com"
-                  git add data/*.json
-                  git commit -m "Auto update reviews" || echo "No changes"
-                  git push
+      # 5️⃣ Run fetch script
+      - name: Fetch latest reviews
+        env:
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+        run: bun run fetch:reviews
 
-            - name: Setup GitHub Pages
-              uses: actions/configure-pages@v4
+      # 6️⃣ Commit updated JSON
+      - name: Commit updated data
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add data/*.json
+          git commit -m "Auto update reviews" || echo "No changes to commit"
+          git push
 
-            - name: Upload Pages artifact
-              uses: actions/upload-pages-artifact@v3
-              with:
-                  path: ./data
+      # 7️⃣ Setup GitHub Pages
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v4
 
-            - name: Deploy to GitHub Pages
-              uses: actions/deploy-pages@v4
+      # 8️⃣ Upload artifact
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./data
+
+      # 9️⃣ Deploy
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
