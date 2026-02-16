@@ -126,7 +126,7 @@ async function fetchClientReviews(client: Client) {
   }
 
   let reviews = data.result.reviews || [];
-  reviews = sortReviews(reviews).slice(0, 5);
+  reviews = sortReviews(reviews).slice(0, 6);
 
   const normalizedRating = normalizeRating(data.result.rating);
 
