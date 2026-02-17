@@ -95,6 +95,16 @@ The workflow (`.github/workflows/deploy.yml`) automatically:
 # Go to Actions → Update & Deploy Reviews → Run workflow
 ```
 
+## Scheduled Runs & Timing
+
+GitHub Actions scheduled workflows run on a "**best effort**" basis:
+
+- **Typical delays:** 15-40 minutes from scheduled time
+- **Peak periods:** Delays of 2+ hours possible (as seen with 8:49 AM IST vs 6:00 AM IST scheduled time)
+- **Infrastructure loads:** Jobs may be dropped entirely during high GitHub Actions usage
+
+> **Note:** While your cron is set for `30 0 * * *` (6:00 AM IST), the actual execution time is not guaranteed. For time-critical operations, consider using an external scheduler that triggers the workflow via API.
+
 ## Data Structure
 
 Each client generates a JSON file in `/data/{slug}.json`:
